@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiComponent } from './api/api.component'
 
 @Component({
   selector: 'app-root',
@@ -8,18 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'todo-app';
-  commentsRef;
   comments;
+  api: ApiComponent;
 
-  constructor(private http: HttpClient) {
-    http.get('http://localhost:3000/comments.json')
-      .subscribe(res => this.comments = res);
-  }
-
-  addCommentData(content: string, initial: string, username: string) {
-    this.commentsRef.add(
-      {
-        content: this.comments.value,
-      });
+  constructor(
+    
+  ) {
+    this.comments = this.api.comments
   }
 }
