@@ -1,7 +1,8 @@
-<p>{{sheet.title}}</p>
-<p>{{sheet.content}}</p>
-
-<label>
-  <input [(ngModel)]="sheet.title" placeholder="titleをかく">
-  <input [(ngModel)]="sheet.content" placeholder="contentをかく">
-</label>
+<div class="sheet-wrapper">
+  <ng-container *ngFor="let sheet of sheets">
+    <label>
+      <input [(ngModel)]="sheet.title" placeholder="titleをかく" class='sheet-title'>
+      <input [(ngModel)]="sheet.content" placeholder="contentをかく" class='sheet-content'>
+    </label>
+  </ng-container>
+</div>

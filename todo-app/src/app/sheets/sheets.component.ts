@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sheet } from '../sheet';
+import { SheetService } from '../sheet.service'
 
 @Component({
   selector: 'app-sheets',
@@ -8,14 +9,21 @@ import { Sheet } from '../sheet';
 })
 export class SheetsComponent implements OnInit {
 
+  sheets: Sheet[];
+
   sheet: Sheet = {
     title: 'zapaanつくる！',
     content: 'angular on railsで!'
   };
 
-  constructor() { }
+  constructor(private sheetService: SheetService) { }
 
   ngOnInit() {
-    this.sheet;
+    this.getSheets();
+  }
+
+  getSheets(): void {
+    this.sheetService.getSheets()
+        .subscribe(sheets => this.sheets = sheets);
   }
 }
