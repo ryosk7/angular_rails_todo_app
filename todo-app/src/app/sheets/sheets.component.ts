@@ -11,11 +11,6 @@ export class SheetsComponent implements OnInit {
 
   sheets: Sheet[];
 
-  sheet: Sheet = {
-    title: 'zapaanつくる！',
-    content: 'angular on railsで!'
-  };
-
   constructor(private sheetService: SheetService) { }
 
   ngOnInit() {
@@ -25,5 +20,22 @@ export class SheetsComponent implements OnInit {
   getSheets(): void {
     this.sheetService.getSheets()
         .subscribe(sheets => this.sheets = sheets);
+  }
+
+  add(title: string, content: string): void {
+    title = title.trim();
+    content = content.trim();
+    if (!title) { return; }
+    if (!content) { return; }
+    this.sheetService.addSheet({ title, content } as Sheet)
+      .subscribe(sheet => {
+        this.getSheets();
+      });
+  }
+  delete(sheet: Sheet): void {
+    this.sheets = this.sheets.filter(s => s !== sheet);
+    this.sheetService.deleteSheet(sheet).subscribe(sheet => {
+      this.getSheets();
+    });
   }
 }
