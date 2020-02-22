@@ -26,7 +26,9 @@ module Back
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :options]
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
 
@@ -37,5 +39,11 @@ module Back
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.generators do |g|
+      g.assets false
+      g.helper false
+      g.template_engine :jbuilder
+    end
   end
 end

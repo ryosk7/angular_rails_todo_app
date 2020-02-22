@@ -15,6 +15,6 @@ export class AppComponent {
   constructor(
     
   ) {
-    this.comments = this.api.comments
+    // this.comments = this.api.comments
   }
 }

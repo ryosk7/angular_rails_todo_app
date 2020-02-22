@@ -1,0 +1,19 @@
+<div class="sheet-wrapper">
+  <ng-container>
+    <p>入力</p>
+    <button (click)="add(title.value, content.value); title.value=''; content.value=''">
+      +
+    </button>
+    <label>
+      <input placeholder="titleをかく" class='sheet-title' #title>
+      <input placeholder="contentをかく" class='sheet-content' #content>
+    </label>
+  </ng-container>
+  <ng-container *ngFor="let sheet of sheets">
+    <div class="sheet-wrapper">
+      <button class="delete" title="delete sheet" (click)="delete(sheet)">x</button>
+      <p>{{sheet.title}}</p>
+      <p>{{sheet.content}}</p>
+    </div>
+  </ng-container>
+</div>
